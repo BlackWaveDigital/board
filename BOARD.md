@@ -53,6 +53,13 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | hurb-1 | Daniel | 3101 | 4101 | hurb-1 |
 | hurb-2 | Daniel | 3102 | 4102 | hurb-2 |
 | hurb-3 | Daniel | 3103 | 4103 | hurb-3 |
+| hurb-4 | Daniel | 3104 | 4104 | hurb-4 |
+| hurb-5 | Daniel | 3105 | 4105 | hurb-5 |
+| hurb-6 | Daniel | 3106 | 4106 | hurb-6 |
+| hurb-7 | Daniel | 3107 | 4107 | hurb-7 |
+| hurb-8 | Daniel | 3108 | 4108 | hurb-8 |
+| hurb-9 | Daniel | 3109 | 4109 | hurb-9 |
+| hurb-10 | Daniel | 3110 | 4110 | hurb-10 |
 | danbox | Dad | 3130 | 4130 | danbox |
 | juhnk | Nick | 3120 | 4120 | juhnk |
 | testing | Shared | 3150 | 4150 | testing |
