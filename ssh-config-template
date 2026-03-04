@@ -1,0 +1,21 @@
+# SSH Config for Monster (Supermicro at DBA)
+# Add this to ~/.ssh/config on your MacBook/laptop
+#
+# Usage: ssh monster
+# Then: cd /d/blackwave/adbox/hurb-1 && claude
+
+# Local network (before Tailscale)
+Host monster
+    HostName 192.168.1.XXX          # <-- Replace with monster's local IP
+    User "Daniel Cobb"
+    IdentityFile ~/.ssh/monster_key  # <-- Generate with: ssh-keygen -t ed25519 -f ~/.ssh/monster_key
+    Port 22
+    ForwardAgent yes
+
+# Tailscale (after IT unblocks it)
+# Host monster
+#     HostName 100.x.x.x            # <-- Replace with monster's Tailscale IP
+#     User "Daniel Cobb"
+#     IdentityFile ~/.ssh/monster_key
+#     Port 22
+#     ForwardAgent yes
