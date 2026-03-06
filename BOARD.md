@@ -1,6 +1,6 @@
 # ADBOX Dev Board
 
-> **Last updated:** 2026-03-06 | **Updated by:** Claude Code (infrastructure recovery session)
+> **Last updated:** 2026-03-06 | **Updated by:** Claude Code (board planning session)
 
 This is the shared coordination file for all ADBOX vibe coders. Claude reads and updates this automatically at session start/end.
 
@@ -100,6 +100,12 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 > Note: #12 is listed in Phase 1 for Daniel (hurb-3) OR can be assigned to danbox for Dad — whoever picks it up first.
 
+### TOOLING — DevTracker Enhancement
+
+| # | Task | Worktree | Owner | Priority | Frontend Test Instructions |
+|---|------|----------|-------|----------|---------------------------|
+| 15 | **DevTracker: MVP Tracker tab** — Real-time component completion tracking. New tab in DevTracker showing all 21 major components + 100+ sub-components from the MVP Beta Component Matrix. Stage-based progress (0/20/40/60/80/100%) with automated signal detection (file existence, test pass rate, branch merge status, Sentry regressions) and manual gates (spec review, QA sign-off). Per-developer velocity-based ETA estimation. Links components to file paths, branches, and commits. Data model: `MvpComponent` (id, name, category, parent_id, completion_pct, stage, mapped_files JSON, mapped_endpoints JSON, assigned_developer_id, mvp_priority, role_access JSON, acceptance_criteria TEXT, last_signal_check). Seed from `MVP_BETA_COMPONENT_MATRIX.csv`. | **hurb-4** | Daniel | P1 | Navigate to DevTracker, click MVP Tracker tab. Verify all 21 major components display with sub-components expandable. Check completion percentages match reality. Click a component — should show mapped files, recent commits, assigned dev, stage gates. Verify the overall MVP % and ETA update when a component stage advances. |
+
 ---
 
 ## In Progress (Claimed)
@@ -167,6 +173,9 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 1. **Claude updates this file** at session start (check in) and session end (check out)
 2. **Don't edit manually** unless correcting stale data
-3. **Commit + push** after every update: `cd /d/blackwave/board && git add -A && git commit -m "board update" && git push`
-4. **Pull before reading**: `cd /d/blackwave/board && git pull`
-5. **When a hurb finishes a task**, it must include frontend test instructions in its completion message so Daniel knows what to verify
+3. **All worktrees are on Monster** — read/write BOARD.md directly, no git pull needed for local coordination. All Claude sessions see the same file in real time.
+4. **Git push is for backup and remote access** — commit + push periodically: `cd /d/blackwave/board && git add -A && git commit -m "board update" && git push`. Git workflow for ADBOX codebase is unchanged (branches, PRs, Railway deploys).
+5. **Verify before reporting** — before updating a blocker or status, actually check the filesystem/system. Don't trust stale text. Run commands, check files, confirm state.
+6. **48-hour staleness rule** — if a status hasn't been updated in 48h, it's suspect. Any session should flag and verify stale entries.
+7. **When a hurb finishes a task**, it must include frontend test instructions in its completion message so Daniel knows what to verify
+8. **Roadmap lives in ROADMAP.md** — BOARD.md is the real-time snapshot (what's happening now). ROADMAP.md is the plan (what's coming).
