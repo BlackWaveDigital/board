@@ -5,11 +5,17 @@
 
 ---
 
-## NOW: CHS Hospital Demo (March 23, 2026)
+## Active Tracks (March 2026)
+
+Three things happening simultaneously. Shared work is marked — most components serve multiple tracks.
+
+---
+
+## TRACK 1: CHS Hospital Demo (March 23, 2026)
 
 **Goal:** Demonstrate hierarchical approval workflows to CHS (Community Health Systems).
 
-**Build target:** March 7 | **Test window:** March 8-23
+**Build target:** March 14 (backend) | **Test window:** March 15-23
 
 | Phase | Tasks | Status |
 |-------|-------|--------|
@@ -23,7 +29,59 @@ Full task details in BOARD.md.
 
 ---
 
-## NEXT: MVP Beta Launch (Target: April-May 2026)
+## TRACK 2: Ellianos Onboarding (March 31, 2026)
+
+**Goal:** Ellianos franchisees managing organic social content + purchasing campaigns with corporate matching funds.
+
+### Platform Access Model
+
+**Same UI, role-based visibility.** This pattern applies across ALL features:
+
+| Level | What they see | What they can do |
+|-------|--------------|-----------------|
+| **Brand / Corporate** | Full platform | Create campaigns, Content Studio, 13-step wizard, analytics config, manage locations, allocate credits |
+| **Location / Franchisee** | Curated view | See campaign cards published by brand, customize within guardrails, purchase with credits + payment, view analytics, manage organic social content |
+
+**Key principle:** Location users don't get a separate UI. They get the same UI with creation features hidden (no "Create Campaign" button, no wizard). They see campaign cards that brand published for them with "Customize" and "Buy" actions.
+
+### What Ellianos Needs
+
+| Need | What Exists | Gap | Serves Track |
+|------|------------|-----|-------------|
+| Content Studio for organic social | 90% complete | Location users need access (currently admin-only visibility) | Ellianos + MVP Beta |
+| Campaign cards for locations | Campaign Browser 85%, CampaignPackageConfig exists | **Campaign card component** — brand-published campaigns shown as purchasable cards to locations. Customize + Buy actions. | Ellianos + MVP Beta (= Campaign Promotional Card B2) |
+| Simplified purchase flow | Campaign Checkout 85-90%, Square integration | **Media Plan Review** — read-only summary before purchase. Locations skip wizard, go card -> review -> pay. | Ellianos + MVP Beta (= B3) |
+| Matching funds / credits | Credits system 70%, CreditTransaction model, hybrid payments | **Credit allocation from brand to location** — brand sets credit balance per location, auto-applies at checkout. V1: manual allocation, no automated matching policy. | Ellianos |
+| Meta analytics on dashboard | Meta sync 80%, daily 6AM UTC | **Meta app approval** or test user workaround to connect Ellianos account | Ellianos |
+| Multi-location management | Location Management 90% | Ready. Create Ellianos company + locations. | Ellianos |
+| Role-based feature hiding | RBAC 85%, 16 roles, dashboard shells | **Role gate for location users** — hide create buttons, wizard, admin tools. Same component as Beta Role Gate (B1). | Ellianos + MVP Beta |
+
+### Ellianos Work Breakdown
+
+| # | Task | Effort | Shared With |
+|---|------|--------|-------------|
+| E1 | Role gate — hide creation features for location users | 2-3 days | MVP Beta (B1) |
+| E2 | Campaign cards — purchasable cards published by brand | 2-3 days | MVP Beta (B2) |
+| E3 | Media plan review — read-only before purchase | 2-3 days | MVP Beta (B3) |
+| E4 | Credit allocation — brand allocates credits to locations, auto-apply at checkout | 2-3 days | Unique to Ellianos |
+| E5 | Content Studio access for location users | 1 day | Ellianos |
+| E6 | Meta account connection for Ellianos | 1 day | Ellianos (blocked by Meta approval) |
+| E7 | Ellianos company + locations + users setup | 1 day | Ellianos |
+
+**E1, E2, E3 are shared with MVP Beta.** Building them for Ellianos = building them for Beta launch. Three birds, one stone.
+
+### Meta Approval Blocker
+
+Options:
+1. **Submit for Meta app review now** — proper path, takes 1-5 business days
+2. **Add Ellianos as test user** — immediate but fragile, limited to 2000 API calls/hour
+3. **Use Ellianos's own Meta Business token** — if they have developer access
+
+**Recommendation:** Submit for review immediately AND add as test user as fallback. Swap to production token once approved.
+
+---
+
+## TRACK 3: MVP Beta Launch (April-May 2026)
 
 **Goal:** Launch ADBOX to first paying Beta clients. Platform is 78% complete overall.
 
@@ -39,22 +97,22 @@ Full task details in BOARD.md.
 
 ### Critical Gaps (Must Build)
 
-| # | Component | Current | Effort | Description |
-|---|-----------|---------|--------|-------------|
-| B1 | Beta Role Gate | 0% | 2-3 days | BETA_CLIENT role + `<RoleGate>` component, sidebar/route hiding |
-| B2 | Campaign Promotional Card | 10% | 2-3 days | Simplified campaign view + purchase CTA for Beta users |
-| B3 | Media Plan Review UI | 10% | 2-3 days | Read-only plan summary (channels, budget, dates) before purchase |
-| B4 | Eve Beta Q&A Filter | 0% | 2-3 days | BETA_TOOLS array in intentRouting.js, restrict to ~5 tools |
-| B5 | Surfing the Black Wave KB | 20% | 1-2 days | Integrate STBW content as Eve knowledge source |
+| # | Component | Current | Effort | Shared With | Description |
+|---|-----------|---------|--------|-------------|-------------|
+| B1 | Role Gate | 0% | 2-3 days | Ellianos (E1) | BETA_CLIENT role + `<RoleGate>` component, sidebar/route hiding |
+| B2 | Campaign Card | 10% | 2-3 days | Ellianos (E2) | Purchasable campaign view for clients/locations |
+| B3 | Media Plan Review | 10% | 2-3 days | Ellianos (E3) | Read-only plan summary before purchase |
+| B4 | Eve Beta Q&A Filter | 0% | 2-3 days | — | BETA_TOOLS array in intentRouting.js |
+| B5 | Surfing the Black Wave KB | 20% | 1-2 days | — | STBW content as Eve knowledge source |
 
-**Total critical gap effort: 9-14 days**
+**B1, B2, B3 are built during Ellianos onboarding.** Only B4 + B5 remain for Beta launch.
 
 ### MVP Ready (Already Working)
 
 | Component | Completion | Beta Access | Notes |
 |-----------|-----------|-------------|-------|
 | Auth & RBAC | 88% | Login + profile | 16 roles, JWT, MFA, invites |
-| Content Studio | 90% | Hidden | 130+ endpoints, IMG.ly editor |
+| Content Studio | 90% | Hidden (or location-level for franchisees) | 130+ endpoints, IMG.ly editor |
 | Campaign Browser | 85% | View only | List + calendar + search |
 | Campaign Checkout | 85-90% | Purchase flow | Square, atomic transactions |
 | Analytics Dashboard | 75% | Read-only | Nivo charts, Meta sync daily |
@@ -65,15 +123,14 @@ Full task details in BOARD.md.
 
 ### MVP Launch Phases
 
-**Phase 1: Beta Infrastructure (5-7 business days)**
-- [ ] Add BETA_CLIENT role to rbacService.js
-- [ ] Build `<RoleGate>` component + wrap sidebar/routes
-- [ ] Build Campaign Promotional Card
-- [ ] Build Media Plan Review (read-only)
-- [ ] Create BETA_TOOLS array in Eve intentRouting.js
-- [ ] Integrate Surfing the Black Wave as Eve knowledge file
+**Phase 1: Beta Infrastructure (built during Ellianos track)**
+- [x] Role Gate (= E1)
+- [x] Campaign Card (= E2)
+- [x] Media Plan Review (= E3)
+- [ ] Eve Beta Q&A Filter (B4)
+- [ ] Surfing the Black Wave integration (B5)
 
-**Phase 2: Polish & Testing (5-7 business days)**
+**Phase 2: Polish & Testing (5-7 business days, April)**
 - [ ] End-to-end payment flow testing (Square sandbox)
 - [ ] Analytics read-only mode for Beta
 - [ ] Google Ads sync reliability testing
@@ -87,17 +144,10 @@ Full task details in BOARD.md.
 - [ ] Fix critical bugs
 - [ ] Gather feedback
 
-**Phase 4: Beta Launch**
+**Phase 4: Beta Launch (May)**
 - [ ] Open to all initial Beta clients
 - [ ] Feature flags per client as needed
 - [ ] Iterate on feedback
-
-### Non-Negotiable Before Any Beta User
-
-1. End-to-end Square payment testing (sandbox)
-2. Beta Role Gate live — no admin features visible to clients
-3. Meta analytics sync verified running
-4. Eve restricted to Q&A mode for Beta role
 
 ### Do NOT Build for MVP
 
@@ -105,15 +155,21 @@ Training Hub (5%), CRM (25%), Calendar (20%), Email Marketing (60%), Video Gener
 
 ---
 
+## March Timeline
+
+| Week | CHS Demo | Ellianos | MVP Beta |
+|------|----------|----------|----------|
+| **Mar 7-14** | Phase 1+2: DB migration, role models, approval state machine, permissions | E7: Company + locations setup. E6: Submit Meta app review | — |
+| **Mar 14-21** | Phase 3+4: Approval queues, notifications, delegation, UI | E1+E2+E3: Role gate, campaign cards, media plan review (= B1+B2+B3) | Shared work with Ellianos |
+| **Mar 21-23** | Phase 5: E2E smoke test, demo prep | E4: Credit allocation. E5: Content Studio location access | — |
+| **Mar 24-31** | Demo day (Mar 23), fixes | E6: Meta connection live. QA + onboard franchisees | B4+B5: Eve Q&A filter, STBW knowledge |
+| **Apr 1-11** | — | Live, iterate | Phase 2: Polish + testing |
+| **Apr 14-18** | — | — | Phase 3: Soft launch (2-3 clients) |
+| **May 1** | — | — | Phase 4: Beta launch |
+
+---
+
 ## LATER: Post-MVP
-
-### Ellianos (Franchisee Buying Experience)
-
-> Franchisees need a "Dominos app" experience — frictionless campaign buying.
-
-**What exists:** CampaignPackageConfig, campaignChannelPopulator, MLU multi-location drafts, template_variables. Backend infrastructure largely built.
-
-**What's missing:** Simplified "storefront" fast-path for the 13-step campaign wizard. Needs hands-on UX review of current location user experience.
 
 ### Monster Live Telemetry (MONSTER_NEXT_LAYER.md)
 
@@ -132,9 +188,10 @@ Real-time component completion tracking inside DevTracker. See BOARD.md task #15
 ### Platform Expansion
 
 - Snapchat/TikTok/LinkedIn analytics (currently 25-70%)
-- Location Management for multi-location clients
 - Audiences & Journeys builder
 - Social Media Management (multi-platform)
+- White Labeling
+- Video Generation
 
 ---
 

@@ -100,6 +100,21 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 > Note: #12 is listed in Phase 1 for Daniel (hurb-3) OR can be assigned to danbox for Dad — whoever picks it up first.
 
+### ELLIANOS ONBOARDING (March 31) — Overlaps with MVP Beta
+
+> E1, E2, E3 are shared with MVP Beta critical gaps (B1, B2, B3). Building for Ellianos = building for Beta.
+> Pattern: same UI, role-based visibility. Locations see campaign cards + buy. Brand sees full creation tools.
+
+| # | Task | Worktree | Owner | Priority | Frontend Test Instructions |
+|---|------|----------|-------|----------|---------------------------|
+| E1 | **Role gate for location users** — Hide creation features (Create Campaign button, wizard, admin tools) for location-level users. Same `<RoleGate>` component serves Beta clients. Location users see Content Studio, campaign cards, analytics, and purchase flow only. Shared with MVP Beta B1. | TBD | TBD | P0 | Log in as location user. Verify: no Create Campaign button, no campaign wizard access, no admin tools in sidebar. Content Studio visible. Campaign cards visible. Analytics visible (read-only). |
+| E2 | **Campaign cards for locations** — Brand publishes campaigns as purchasable cards visible to their locations. Cards show: campaign name, channels, budget, duration, hero creative. Actions: "Customize" (within guardrails) and "Buy". Shared with MVP Beta B2 (Campaign Promotional Card). | TBD | TBD | P0 | As brand user: create + publish a campaign. As location user: see the campaign card in browser. Click Customize — verify editable fields are limited. Click Buy — routes to checkout. |
+| E3 | **Media plan review before purchase** — Read-only summary: channel allocation, flight dates, audience, budget. "Agree + proceed to payment" flow. Shared with MVP Beta B3. | TBD | TBD | P0 | As location user: click Buy on a campaign card. Verify media plan summary shows before payment. Agree checkbox required. Proceed to payment routes to Square checkout. |
+| E4 | **Credit allocation from brand to locations** — Brand admin allocates credit balance to each location. Credits auto-apply at checkout (hybrid payment: credits + card). V1: manual allocation, no automated matching policy. Extend existing Credits system (70%). | TBD | TBD | P1 | As brand admin: allocate $500 credits to a location. As location user: go to checkout, verify credit balance shows and auto-applies. Pay remainder with card. Verify CreditTransaction records created. |
+| E5 | **Content Studio access for location users** — Enable Content Studio in sidebar/routes for location-level users. They can browse, view, download brand assets. Creation permissions TBD (may allow organic social content creation). | TBD | TBD | P1 | As location user: verify Content Studio appears in sidebar. Can browse assets, view previews, download. Verify no destructive actions available unless explicitly granted. |
+| E6 | **Meta account connection for Ellianos** — Connect Ellianos Meta Business account for analytics sync. Submit Meta app review AND add as test user as fallback. | TBD | TBD | P1 | After connection: verify Meta analytics data appears on Ellianos dashboard. Check daily sync runs. Verify location-level attribution if available. |
+| E7 | **Ellianos company + locations + users setup** — Create Ellianos company, add locations (coffee shops), create brand admin + location user accounts, assign roles. | TBD | TBD | P1 | Log in as each role level. Verify correct dashboard shell loads. Verify location users only see their location's data. Brand admin sees all locations. |
+
 ### TOOLING — DevTracker Enhancement
 
 | # | Task | Worktree | Owner | Priority | Frontend Test Instructions |
