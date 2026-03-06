@@ -127,7 +127,7 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | # | Blocker | Who's Blocked | Waiting On | Since |
 |---|---------|---------------|------------|-------|
 | I1 | F: drive (OWC SoftRAID) controller errors — dozens since Mar 3. Monitor. | All (data risk) | Investigation | 2026-03-03 |
-| I2 | EVE RAG indexes not yet rebuilt after WSL recovery | EVE users | `eve ingest` runs | 2026-03-06 |
+| I2 | EVE RAG indexes partially rebuilt — `internal` done, `team` and `client` still need ingestion | EVE users | `eve ingest team` + `eve ingest client` | 2026-03-06 |
 
 ---
 

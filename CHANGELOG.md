@@ -5,6 +5,30 @@
 
 ---
 
+## 2026-03-06 (update 2) — EVE Repo, Dev Mapping, Security Fixes
+
+**Operator:** Daniel (remote via Claude Code)
+
+### Changes
+- **EVE git repo initialized** at `D:\blackwave\eve\`, pushed to `myalchemy/eve` (private)
+  - `.gitignore` excludes `.venv/`, `vectordb/`, `data/` (runtime + sensitive data stays local)
+- **`dev eve` session mapping** added to both `wsl-dev.sh` and `dev.sh`
+  - WSL `/usr/local/bin/dev` updated
+- **Security fix: GH_TOKENS moved out of `dev.sh`**
+  - Tokens were in a commented-out associative array inside tracked `dev.sh` — a leak waiting to happen
+  - Now loaded from `scripts/.tokens` (untracked, in `.gitignore`)
+  - No real tokens were ever committed
+
+### Security Audit Results
+- No secrets in any tracked repo (eve, board, scripts)
+- Ollama bound to `127.0.0.1:11434` only (not network-exposed)
+- EVE data isolation verified: separate Modelfiles, separate ChromaDB stores, separate RAG source lists
+- WSL: only `root` and `daniel_cobb` users, bins owned by root
+- WSL backups on D: (local only, not shared)
+- Accepted risks documented: NOPASSWD sudo, `--dangerously-skip-permissions` in dev sessions
+
+---
+
 ## 2026-03-06 — WSL Recovery, Storage Overhaul, EVE Rebuild
 
 **Operator:** Daniel (remote via Claude Code)
