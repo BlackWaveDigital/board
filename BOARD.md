@@ -156,13 +156,80 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 ---
 
-## Future Track: Ellianos (Franchisee Buying Experience)
+## Worktree Queues
 
-> Not blocking CHS demo. Core insight: Ellianos franchisees need a "Dominos app" experience — frictionless campaign buying.
->
-> **What already exists:** CampaignPackageConfig (pricing/packages), campaignChannelPopulator (auto-fill from location data), MLU multi-location drafts, template_variables on Content Studio templates. The backend infrastructure is largely built.
->
-> **What's missing:** Needs hands-on review of the current location user experience to identify actual UX gaps. The 13-step campaign wizard is likely too heavy for a franchisee — may need a simplified "storefront" fast-path that leverages existing packages. Will scope after CHS demo work settles.
+> Each hurb has a priority-ordered task queue. Work top to bottom. When the top task is done (PR merged), move to the next. Tasks marked `BLOCKED` need upstream merges first — check the dependency.
+
+### hurb-1 (Daniel) — ports 3101/4101
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 1 | DB: Hierarchical fields on ai_approval_item | P0 | — | Committed, needs PR + merge |
+| 7 | Frontend: Approval chain status tracker | P1 | #2, #11 merged | Waiting |
+
+### hurb-2 (Daniel) — ports 3102/4102
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 10 | Backend: Role + UserRole models | P0 | — | Committed, needs PR + merge |
+
+### hurb-3 (Daniel) — ports 3103/4103
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 12 | Dashboard demo data seeding | P2 | — | Script written, ready for testing |
+| 13 | CHS campaign template library | P2 | — | Not started |
+| E7 | Ellianos company + locations + users setup | P1 | — | Not started |
+| E6 | Meta account connection for Ellianos | P1 | E7 | Not started (submit Meta app review ASAP) |
+
+### hurb-4 (Daniel) — ports 3104/4104
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| E1 | Role gate for location users (= MVP Beta B1) | P0 | — | Not started |
+| E5 | Content Studio access for location users | P1 | E1 | Not started |
+| 15 | DevTracker: MVP Tracker tab | P1 | — | Not started |
+
+### hurb-5 (Daniel) — ports 3105/4105
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| E2 | Campaign cards for locations (= MVP Beta B2) | P0 | E1 done | Not started |
+
+### hurb-6 (Daniel) — ports 3106/4106
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| E3 | Media plan review before purchase (= MVP Beta B3) | P0 | E2 done | Not started |
+
+### hurb-7 (Daniel) — ports 3107/4107
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| E4 | Credit allocation from brand to locations | P1 | E1 done | Not started |
+
+### hurb-8 (Daniel) — ports 3108/4108
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 2 | Backend: Approval chain state machine | P0 | #1, #10 merged | BLOCKED |
+| 4 | Backend: Approval notifications (hierarchical) | P1 | #2 done | Waiting |
+| 14 | End-to-end approval flow smoke test | P0 | #1-6 all merged | Waiting |
+
+### hurb-9 (Daniel) — ports 3109/4109
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 11 | Backend: Permissions service upgrade | P1 | #1, #10 merged | BLOCKED |
+| 5 | Backend: Approval delegation + SLA/escalation | P1 | #11 done | Waiting |
+
+### hurb-10 (Daniel) — ports 3110/4110
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 3 | Backend: Level-specific approval queues | P0 | #2, #11 merged | BLOCKED |
+| 6 | Frontend: Approval queue UI | P0 | #3 done | Waiting |
+
+### juhnk (Nick) — ports 3120/4120
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| 8 | Frontend: National buying workflow UI | P1 | — | In progress |
+| 9 | Backend: Content version history improvements | P2 | — | Not started |
+
+### danbox (Dad) — ports 3130/4130
+| # | Task | Priority | Depends On | Status |
+|---|------|----------|------------|--------|
+| — | Awaiting assignment | — | — | — |
 
 ---
 
