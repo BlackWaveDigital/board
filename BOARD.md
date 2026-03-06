@@ -15,7 +15,7 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | Daniel | Monster | hurb-2 | hurb-2 | Active | 2026-03-05 | CHS #10: Role + UserRole models (committed, needs PR) |
 | Daniel | Monster | hurb-3 | hurb-3 | Active | 2026-03-05 | CHS #12: Dashboard demo data seeding |
 | Daniel | Monster | hurb-4 | hurb-4 | Assigned | 2026-03-06 | Ellianos E1/B1: Role gate |
-| Daniel | Monster | hurb-5 | hurb-5 | Assigned | 2026-03-06 | Ellianos E2/B2: Campaign cards |
+| Daniel | Monster | hurb-5 | hurb-5 | Assigned | 2026-03-06 | #15: DevTracker MVP Tracker tab → then E2/B2: Campaign cards |
 | Daniel | Monster | hurb-6 | hurb-6 | Assigned | 2026-03-06 | Ellianos E3/B3: Media plan review |
 | Daniel | Monster | hurb-7 | hurb-7 | Assigned | 2026-03-06 | Ellianos E4: Credit allocation |
 | Daniel | Monster | hurb-8 | hurb-8 | Assigned | 2026-03-06 | CHS #2: Approval chain state machine |
@@ -121,7 +121,7 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 | # | Task | Worktree | Owner | Priority | Frontend Test Instructions |
 |---|------|----------|-------|----------|---------------------------|
-| 15 | **DevTracker: MVP Tracker tab** — Real-time component completion tracking. New tab in DevTracker showing all 21 major components + 100+ sub-components from the MVP Beta Component Matrix. Stage-based progress (0/20/40/60/80/100%) with automated signal detection (file existence, test pass rate, branch merge status, Sentry regressions) and manual gates (spec review, QA sign-off). Per-developer velocity-based ETA estimation. Links components to file paths, branches, and commits. Data model: `MvpComponent` (id, name, category, parent_id, completion_pct, stage, mapped_files JSON, mapped_endpoints JSON, assigned_developer_id, mvp_priority, role_access JSON, acceptance_criteria TEXT, last_signal_check). Seed from `MVP_BETA_COMPONENT_MATRIX.csv`. | **hurb-4** | Daniel | P1 | Navigate to DevTracker, click MVP Tracker tab. Verify all 21 major components display with sub-components expandable. Check completion percentages match reality. Click a component — should show mapped files, recent commits, assigned dev, stage gates. Verify the overall MVP % and ETA update when a component stage advances. |
+| 15 | **DevTracker: MVP Tracker + Roadmap tab** — Real-time project tracking dashboard. **Component Tracker:** 21 major components + 100+ sub-components from CSV, stage-based progress (0/20/40/60/80/100%), automated signal detection (file existence, tests, branch merges, Sentry), manual QA gates, per-developer velocity ETAs. **Roadmap View:** CHS Demo / Ellianos / MVP Beta timelines with dependency graph, milestone tracking, burndown. **Live Worktree Status:** which hurbs are active, what they're building, last commit, Claude session detection (prep for heartbeat agent). **Task Queue:** per-worktree backlog with priorities, dependencies, blocked/unblocked status — mirrors BOARD.md Worktree Queues section but live and auto-updating. **Developer Velocity:** task completion time by dev + task type, used for ETA estimation on unstarted tasks. Data models: `MvpComponent`, `ProjectMilestone`, `WorktreeTask`. Seed components from `MVP_BETA_COMPONENT_MATRIX.csv`, seed tasks from BOARD.md. | **hurb-5** | Daniel | P0 | Navigate to DevTracker, click MVP Tracker tab. Verify: (1) Component matrix displays with expandable sub-components and correct percentages. (2) Roadmap shows 3 tracks with timelines. (3) Worktree status shows all 10 hurbs with current task and last commit. (4) Task queue per hurb matches BOARD.md. (5) Click a component — see mapped files, commits, assigned dev, stage gates. (6) Overall MVP % and ETA update when a stage advances. |
 
 ---
 
@@ -184,11 +184,11 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 |---|------|----------|------------|--------|
 | E1 | Role gate for location users (= MVP Beta B1) | P0 | — | Not started |
 | E5 | Content Studio access for location users | P1 | E1 | Not started |
-| 15 | DevTracker: MVP Tracker tab | P1 | — | Not started |
 
 ### hurb-5 (Daniel) — ports 3105/4105
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
+| 15 | DevTracker: MVP Tracker tab — real-time component tracking, stage-based progress, per-dev velocity ETAs, automated signal detection. Seed from CSV. Also includes: Roadmap view (CHS/Ellianos/Beta timelines), live worktree status (who's working where), and task dependency visualization. This is the tool that replaces manual BOARD.md updates with automated tracking. | P0 | — | Not started |
 | E2 | Campaign cards for locations (= MVP Beta B2) | P0 | E1 done | Not started |
 
 ### hurb-6 (Daniel) — ports 3106/4106
