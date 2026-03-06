@@ -209,6 +209,8 @@ This is last because it's polish. The data and intelligence layers need to work 
 
 ## File Inventory (Monster)
 
+> Updated 2026-03-06 after WSL recovery + storage overhaul. See `board/CHANGELOG.md`.
+
 After all phases, the Monster has:
 
 ```
@@ -220,10 +222,29 @@ D:\blackwave\
   │   ├── danbox/
   │   └── testing/
   ├── board/                        <- adbox-board repo (exists)
+  │   ├── BOARD.md
+  │   ├── CHANGELOG.md              <- infrastructure change log
+  │   └── MONSTER_NEXT_LAYER.md
+  ├── consulting/                   <- consulting docs (exists)
+  ├── eve/                          <- EVE AI assistant (exists, rebuilt 2026-03-06)
+  │   ├── internal/Modelfile        <- llama3.3:70b, Daniel+Nick only
+  │   ├── team/Modelfile            <- llama3.3:70b, dev+ops team
+  │   ├── client/Modelfile          <- llama3.3:70b, client-facing
+  │   ├── chat.py                   <- RAG chat client
+  │   ├── ingest.py                 <- RAG indexer (per-instance data boundaries)
+  │   ├── eve.sh                    <- launcher
+  │   ├── vectordb/                 <- per-instance ChromaDB
+  │   └── .venv/                    <- Python (chromadb, ollama)
   ├── scripts/                      <- utility scripts (exists)
-  │   ├── onboard.sh                <- (exists)
-  │   ├── add-worktree.sh           <- (exists)
-  │   ├── status.sh                 <- (exists)
+  │   ├── dev.sh                    <- native MSYS2 dev launcher (backup)
+  │   ├── wsl-dev.sh                <- WSL-side dev launcher (primary)
+  │   ├── wsl-backup.sh             <- weekly WSL export (NEW 2026-03-06)
+  │   ├── wsl-backup-task.xml       <- Task Scheduler definition
+  │   ├── wsl-setup-bins.sh
+  │   ├── wsl-tmux.conf
+  │   ├── onboard.sh
+  │   ├── add-worktree.sh
+  │   ├── status.sh
   │   ├── heartbeat.sh              <- NEW: Phase 1
   │   └── heartbeat.js              <- NEW: Phase 1 (upgrade)
   ├── pm/                           <- NEW: Phase 4
@@ -231,6 +252,21 @@ D:\blackwave\
   │   ├── state/
   │   └── alerts/
   └── screenshots/                  <- (exists)
+
+D:\wsl\
+  └── Ubuntu/                       <- WSL2 virtual disk (moved from C: on 2026-03-06)
+      └── ext4.vhdx
+
+D:\models\
+  └── active/                       <- Ollama models (llama3.3:70b, eve-internal/team/client)
+
+D:\caches\
+  ├── npm/                          <- npm cache (redirected from C:)
+  └── yarn/                         <- yarn cache (redirected from C:)
+
+F:\models\
+  ├── archive/                      <- cold model storage
+  └── huggingface/                  <- HuggingFace download cache
 ```
 
 ---

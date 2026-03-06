@@ -1,6 +1,6 @@
 # ADBOX Dev Board
 
-> **Last updated:** 2026-03-04 | **Updated by:** Board Claude (product planning session)
+> **Last updated:** 2026-03-06 | **Updated by:** Claude Code (infrastructure recovery session)
 
 This is the shared coordination file for all ADBOX vibe coders. Claude reads and updates this automatically at session start/end.
 
@@ -115,6 +115,10 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | # | Task | Owner | Worktree | Completed |
 |---|------|-------|----------|-----------|
 | B1 | Approval workflow architecture design | Board Claude | board | 2026-03-04 |
+| I1 | WSL recovery + storage overhaul (see CHANGELOG.md) | Daniel + Claude Code | — | 2026-03-06 |
+| I2 | EVE rebuild — 3 instances on llama3.3:70b | Daniel + Claude Code | — | 2026-03-06 |
+| I3 | Ollama + Llama 3.3 70B installed on D: | Daniel + Claude Code | — | 2026-03-06 |
+| I4 | Automated weekly WSL backup (Sundays 4AM) | Daniel + Claude Code | — | 2026-03-06 |
 
 ---
 
@@ -122,7 +126,8 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 | # | Blocker | Who's Blocked | Waiting On | Since |
 |---|---------|---------------|------------|-------|
-| — | None — B1 resolved | — | — | — |
+| I1 | F: drive (OWC SoftRAID) controller errors — dozens since Mar 3. Monitor. | All (data risk) | Investigation | 2026-03-03 |
+| I2 | EVE RAG indexes not yet rebuilt after WSL recovery | EVE users | `eve ingest` runs | 2026-03-06 |
 
 ---
 
