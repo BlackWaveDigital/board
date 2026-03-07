@@ -11,16 +11,16 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | Who | Machine | Worktree | Branch | Status | Started | Working On |
 |-----|---------|----------|--------|--------|---------|------------|
 | Daniel | Monster | board | main | Active | 2026-03-06 | Board planning, task assignment, roadmap |
-| Daniel | Monster | hurb-1 | hurb-1 | Active | 2026-03-05 | CHS #1: DB hierarchical fields (committed, needs PR) |
-| Daniel | Monster | hurb-2 | hurb-2 | Active | 2026-03-05 | CHS #10: Role + UserRole models (committed, needs PR) |
-| Daniel | Monster | hurb-3 | hurb-3 | Active | 2026-03-05 | CHS #12: Dashboard demo data seeding |
-| Daniel | Monster | hurb-4 | hurb-4 | Assigned | 2026-03-06 | Ellianos E1/B1: Role gate |
-| Daniel | Monster | hurb-5 | hurb-5 | Assigned | 2026-03-06 | #15: DevTracker MVP Tracker tab → then E2/B2: Campaign cards |
-| Daniel | Monster | hurb-6 | hurb-6 | Assigned | 2026-03-06 | Ellianos E3/B3: Media plan review |
-| Daniel | Monster | hurb-7 | hurb-7 | Assigned | 2026-03-06 | Ellianos E4: Credit allocation |
-| Daniel | Monster | hurb-8 | hurb-8 | Assigned | 2026-03-06 | CHS #2: Approval chain state machine |
-| Daniel | Monster | hurb-9 | hurb-9 | Assigned | 2026-03-06 | CHS #11: Permissions service upgrade |
-| Daniel | Monster | hurb-10 | hurb-10 | Assigned | 2026-03-06 | CHS #3: Level-specific approval queues + #6: Approval queue UI |
+| Daniel | Monster | hurb-1 | hurb-1 | Needs next task | 2026-03-06 | DONE: #1 + #7 (approval tracker) — needs PR |
+| Daniel | Monster | hurb-2 | hurb-2 | Needs next task | 2026-03-06 | DONE: #10 + UserRole scoping — needs PR |
+| Daniel | Monster | hurb-3 | hurb-3 | Needs next task | 2026-03-06 | DONE: #12 + #13 + E7 seeders — needs PR |
+| Daniel | Monster | hurb-4 | hurb-4 | Needs next task | 2026-03-06 | DONE: E1 RoleGate + E5 Content Studio — needs PR |
+| Daniel | Monster | hurb-5 | hurb-5 | Active | 2026-03-06 | #15: DevTracker MVP Tracker tab — in progress |
+| Daniel | Monster | hurb-6 | hurb-6 | Needs next task | 2026-03-06 | DONE: E3 MediaPlanReview — needs PR |
+| Daniel | Monster | hurb-7 | hurb-7 | Needs next task | 2026-03-06 | DONE: E4 Credit allocation + history — needs PR |
+| Daniel | Monster | hurb-8 | hurb-8 | Needs next task | 2026-03-06 | DONE: #2 Approval state machine — needs PR |
+| Daniel | Monster | hurb-9 | hurb-9 | Inactive | — | Not in use |
+| Daniel | Monster | hurb-10 | hurb-10 | Inactive | — | Not in use |
 | Nick | Monster | juhnk | juhnk | Active | 2026-03-04 | CHS #8: National buying UI |
 | Dad | Monster | danbox | danbox | Idle | — | Awaiting assignment |
 
@@ -114,8 +114,8 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 | E3 | **Media plan review before purchase** — Read-only summary: channel allocation, flight dates, audience, budget. "Agree + proceed to payment" flow. Shared with MVP Beta B3. | **hurb-6** | Daniel | P0 | As location user: click Buy on a campaign card. Verify media plan summary shows before payment. Agree checkbox required. Proceed to payment routes to Square checkout. |
 | E4 | **Credit allocation from brand to locations** — Brand admin allocates credit balance to each location. Credits auto-apply at checkout (hybrid payment: credits + card). V1: manual allocation, no automated matching policy. Extend existing Credits system (70%). | **hurb-7** | Daniel | P1 | As brand admin: allocate $500 credits to a location. As location user: go to checkout, verify credit balance shows and auto-applies. Pay remainder with card. Verify CreditTransaction records created. |
 | E5 | **Content Studio access for location users** — Enable Content Studio in sidebar/routes for location-level users. They can browse, view, download brand assets. Creation permissions TBD (may allow organic social content creation). | **hurb-4** | Daniel | P1 | As location user: verify Content Studio appears in sidebar. Can browse assets, view previews, download. Verify no destructive actions available unless explicitly granted. |
-| E6 | **Meta account connection for Ellianos** — Connect Ellianos Meta Business account for analytics sync. Submit Meta app review AND add as test user as fallback. | **hurb-3** | Daniel | P1 | After connection: verify Meta analytics data appears on Ellianos dashboard. Check daily sync runs. Verify location-level attribution if available. |
-| E7 | **Ellianos company + locations + users setup** — Create Ellianos company, add locations (coffee shops), create brand admin + location user accounts, assign roles. | **hurb-3** | Daniel | P1 | Log in as each role level. Verify correct dashboard shell loads. Verify location users only see their location's data. Brand admin sees all locations. |
+| E6 | **Meta account connection for Ellianos** — Connect Ellianos Meta Business account for analytics sync. Submit Meta app review AND add as test user as fallback. | **HUMAN** | Daniel (ops) | P1 | N/A — operational task, not dev. Daniel submits Meta app review, adds test user. |
+| E7 | **Ellianos company + locations + users setup** — Create Ellianos company, add locations (coffee shops), create brand admin + location user accounts, assign roles. | **HUMAN** | Daniel (ops) | P1 | N/A — operational task. Daniel creates via admin UI or seed script. |
 
 ### TOOLING — DevTracker Enhancement
 
@@ -139,11 +139,36 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 
 | # | Task | Owner | Worktree | Completed |
 |---|------|-------|----------|-----------|
+| 1 | DB: Hierarchical fields on ai_approval_item | Daniel | hurb-1 | 2026-03-06 |
+| 7 | Frontend: Approval chain status tracker | Daniel | hurb-1 | 2026-03-06 |
+| 10 | Backend: Role + UserRole models + scoping | Daniel | hurb-2 | 2026-03-06 |
+| 12 | Dashboard demo data seeding | Daniel | hurb-3 | 2026-03-06 |
+| 13 | CHS campaign template library | Daniel | hurb-3 | 2026-03-06 |
+| E7 | Ellianos company + locations + users setup | Daniel | hurb-3 | 2026-03-06 |
+| E1 | RoleGate component (= MVP Beta B1) | Daniel | hurb-4 | 2026-03-06 |
+| E5 | Content Studio access for location users | Daniel | hurb-4 | 2026-03-06 |
+| E3 | Media plan review (= MVP Beta B3) | Daniel | hurb-6 | 2026-03-06 |
+| E4 | Credit allocation + history endpoints | Daniel | hurb-7 | 2026-03-06 |
+| 2 | Approval chain state machine | Daniel | hurb-8 | 2026-03-06 |
 | B1 | Approval workflow architecture design | Board Claude | board | 2026-03-04 |
 | I1 | WSL recovery + storage overhaul (see CHANGELOG.md) | Daniel + Claude Code | — | 2026-03-06 |
 | I2 | EVE rebuild — 3 instances on llama3.3:70b | Daniel + Claude Code | — | 2026-03-06 |
 | I3 | Ollama + Llama 3.3 70B installed on D: | Daniel + Claude Code | — | 2026-03-06 |
 | I4 | Automated weekly WSL backup (Sundays 4AM) | Daniel + Claude Code | — | 2026-03-06 |
+
+---
+
+## Human / Ops Tasks (NOT for hurbs)
+
+> These require human action — admin UI clicks, external submissions, vendor comms. Daniel owns these.
+
+| # | Task | Owner | Status | Notes |
+|---|------|-------|--------|-------|
+| E6 | Submit Meta app review for Ellianos | Daniel | Not started | Also add as test user as fallback |
+| E7 | Create Ellianos company + locations + users in admin UI | Daniel | Not started | Depends on E1 (role gate) being done first |
+| N1 | Respond to Nucleus (Jonahs Duran) with timeline | Daniel | Not started | Target: end of April go-live for crawl phase |
+| N2 | Send ADBOX logo + App Store description to Nucleus | Daniel | Not started | Owed since Feb |
+| — | Run `eve ingest team` + `eve ingest client` | Daniel | Not started | Unblocks EVE for team/client use |
 
 ---
 
@@ -163,62 +188,63 @@ This is the shared coordination file for all ADBOX vibe coders. Claude reads and
 ### hurb-1 (Daniel) — ports 3101/4101
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| 1 | DB: Hierarchical fields on ai_approval_item | P0 | — | Committed, needs PR + merge |
-| 7 | Frontend: Approval chain status tracker | P1 | #2, #11 merged | Waiting |
+| ~~1~~ | ~~DB: Hierarchical fields~~ | — | — | DONE |
+| ~~7~~ | ~~Approval chain status tracker~~ | — | — | DONE |
+| 11 | Backend: Permissions service upgrade — extend permissionsService for level-based approval checks | P0 | #1, #10 done | **READY — START** |
+| 5 | Backend: Approval delegation + SLA/escalation | P1 | #11 done | Waiting |
 
 ### hurb-2 (Daniel) — ports 3102/4102
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| 10 | Backend: Role + UserRole models | P0 | — | Committed, needs PR + merge |
+| ~~10~~ | ~~Role + UserRole models~~ | — | — | DONE |
+| E2 | Campaign cards for locations (= MVP Beta B2) — brand publishes campaigns as purchasable cards. Cards show: name, channels, budget, duration, hero creative. Actions: Customize + Buy. | P0 | E1 done | **READY — START** |
 
 ### hurb-3 (Daniel) — ports 3103/4103
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| 12 | Dashboard demo data seeding | P2 | — | Script written, ready for testing |
-| 13 | CHS campaign template library | P2 | — | Not started |
-| E7 | Ellianos company + locations + users setup | P1 | — | Not started |
-| E6 | Meta account connection for Ellianos | P1 | E7 | Not started (submit Meta app review ASAP) |
+| ~~12~~ | ~~Demo data seeding~~ | — | — | DONE |
+| ~~13~~ | ~~CHS campaign templates~~ | — | — | DONE |
+| ~~E7~~ | ~~Ellianos company setup~~ | — | — | DONE |
+| B4 | Eve Beta Q&A filter — add BETA_TOOLS array in intentRouting.js, restrict Eve to Q&A only for Beta/location users. See TASK_REFERENCES.md. | P1 | E1 done | **READY — START** |
+| B5 | Surfing the Black Wave KB — integrate STBW content as Eve knowledge source in backend/src/services/eve/knowledge/ | P1 | — | Waiting |
 
 ### hurb-4 (Daniel) — ports 3104/4104
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| E1 | Role gate for location users (= MVP Beta B1) | P0 | — | Not started |
-| E5 | Content Studio access for location users | P1 | E1 | Not started |
+| ~~E1~~ | ~~RoleGate component~~ | — | — | DONE |
+| ~~E5~~ | ~~Content Studio location access~~ | — | — | DONE |
+| 3 | Backend: Level-specific approval queues — filter /api/v1/ai-approvals by approval_level + location/brand scope | P0 | #2 done | **READY — START** |
+| 6 | Frontend: Approval queue UI — /approvals page with approve/reject/delegate/bulk actions | P0 | #3 done | Waiting |
 
 ### hurb-5 (Daniel) — ports 3105/4105
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| 15 | DevTracker: MVP Tracker tab — real-time component tracking, stage-based progress, per-dev velocity ETAs, automated signal detection. Seed from CSV. Also includes: Roadmap view (CHS/Ellianos/Beta timelines), live worktree status (who's working where), and task dependency visualization. This is the tool that replaces manual BOARD.md updates with automated tracking. | P0 | — | Not started |
-| E2 | Campaign cards for locations (= MVP Beta B2) | P0 | E1 done | Not started |
+| 15 | DevTracker: MVP Tracker tab | P0 | — | **In progress** |
 
 ### hurb-6 (Daniel) — ports 3106/4106
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| E3 | Media plan review before purchase (= MVP Beta B3) | P0 | E2 done | Not started |
+| ~~E3~~ | ~~Media plan review~~ | — | — | DONE |
+| 4 | Backend: Approval notifications (hierarchical) — notify next-level approvers on advance, notify submitter on reject. SendGrid + Socket.io. | P0 | #2 done | **READY — START** |
 
 ### hurb-7 (Daniel) — ports 3107/4107
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| E4 | Credit allocation from brand to locations | P1 | E1 done | Not started |
+| ~~E4~~ | ~~Credit allocation~~ | — | — | DONE |
+| N-ISO | Template isolation — add business_account_id filtering to all template queries + is_company_template flag. Nucleus prep. See docs/integrations/nucleus/critical-privacy-fix-required.md | P1 | — | **READY — START** |
 
 ### hurb-8 (Daniel) — ports 3108/4108
 | # | Task | Priority | Depends On | Status |
 |---|------|----------|------------|--------|
-| 2 | Backend: Approval chain state machine | P0 | #1, #10 merged | BLOCKED |
-| 4 | Backend: Approval notifications (hierarchical) | P1 | #2 done | Waiting |
-| 14 | End-to-end approval flow smoke test | P0 | #1-6 all merged | Waiting |
+| ~~2~~ | ~~Approval chain state machine~~ | — | — | DONE |
+| 14 | End-to-end approval flow smoke test — full walkthrough of all approval scenarios | P0 | #1-7,#11 all merged | Waiting |
+| N-SSO | Nucleus SSO/OIDC integration — OAuth using Vendasta pattern. See docs/integrations/nucleus/ | P1 | N-ISO done | Waiting |
 
-### hurb-9 (Daniel) — ports 3109/4109
-| # | Task | Priority | Depends On | Status |
-|---|------|----------|------------|--------|
-| 11 | Backend: Permissions service upgrade | P1 | #1, #10 merged | BLOCKED |
-| 5 | Backend: Approval delegation + SLA/escalation | P1 | #11 done | Waiting |
+### hurb-9 (Daniel) — ports 3109/4109 — INACTIVE
+> Not in use. Tasks reassigned to other hurbs.
 
-### hurb-10 (Daniel) — ports 3110/4110
-| # | Task | Priority | Depends On | Status |
-|---|------|----------|------------|--------|
-| 3 | Backend: Level-specific approval queues | P0 | #2, #11 merged | BLOCKED |
-| 6 | Frontend: Approval queue UI | P0 | #3 done | Waiting |
+### hurb-10 (Daniel) — ports 3110/4110 — INACTIVE
+> Not in use. Tasks reassigned to other hurbs.
 
 ### juhnk (Nick) — ports 3120/4120
 | # | Task | Priority | Depends On | Status |
